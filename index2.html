@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cozy Canvas - Custom Calligraphy & Crochet Crafts</title>
+    <!-- Google Fonts for Aesthetic Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS RESET & VARIABLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-color: #faf8f5;       /* Soft Cream / Off-white */
+            --mint-teal: #d2e7e4;      /* Soft Mint/Teal Accent */
+            --mint-dark: #a8cfc9;      /* Darker Mint for hover states */
+            --taupe: #bfae9e;          /* Earthy Taupe Tone */
+            --text-dark: #2c2a29;      /* Elegant Charcoal Text */
+            --text-light: #6e6a66;     /* Muted Text for Subtitles */
+            --white: #ffffff;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: rgba(250, 248, 245, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(191, 174, 158, 0.2);
+        }
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--taupe);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 160px 20px 80px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--text-dark);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        .cta-btn:hover {
+            background-color: var(--taupe);
+        }
+
+        /* GALLERY SECTION */
+        .gallery-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .gallery-item {
+            background-color: var(--white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #eae6e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-style: italic;
+            position: relative;
+        }
+        /* Visual cue mimicking your art palette */
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(210, 231, 228, 0.4);
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+        .gallery-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .gallery-info h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        .gallery-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* ABOUT US SECTION */
+        .about-section {
+            background-color: var(--mint-teal);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .about-content p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* CUSTOMIZER / ORDER SECTION */
+        .order-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .order-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 4px;
+            border: 1px solid rgba(191, 174, 158, 0.3);
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dcd6cf;
+            background-color: var(--bg-color);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--taupe);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--text-dark);
+            color: var(--white);
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: var(--taupe);
+        }
+
+        /* FOOTER & CONTACT */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--bg-color);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .footer-content h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .footer-contact-info {
+            margin: 20px 0;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .social-links a {
+            color: var(--bg-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+            padding-bottom: 2px;
+        }
+        .social-links a:hover {
+            border-color: var(--mint-teal);
+        }
+        .copyright {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #8a8580;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .order-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">The Cozy Canvas</a>
+            <ul class="nav-links">
+                <li><a href="#gallery">Collection</a></li>
+                <li><a href="#about">Our Story</a></li>
+                <li><a href="#customize">Order Online</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Handcrafted Art for Cozy Spaces</h1>
+        <p>Explore elegant custom Arabic calligraphy canvases, minimalist spiritual artwork, and beautifully hand-stitched crochet crafts designed to bring peace and warmth to your home.</p>
+        <a href="#customize" class="cta-btn">Start Customizing</a>
+    </section>
+
+    <!-- GALLERY SECTION (Placeholders for your specific images) -->
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">Featured Works</h2>
+        <div class="gallery-grid">
+            <!-- Canvas Sample 1 -->
+            <div class="gallery-item">
+                <div class="image-placeholder">
+                    <span>[ Arabic Calligraphy Artwork ]</span>
+                </div>
+                <div class="gallery-info">
+                    <h3>Abstract Spiritual Canvas</h3>
+                    <p>Featuring custom scripts like "Fabi-ayyi ala-i" & gold leaf accents</p>
+                </div>
+            </div>
+            <!-- Canvas Sample 2 -->
+            <div class="gallery-item">
+                <div class="image-placeholder">
+                    <span>[ Minimalist Allah & Muhammad Duo ]</span>
+                </div>
+                <div class="gallery-info">
+                    <h3>Mint & Taupe Minimalist Duo</h3>
+                    <p>Soft structural background tones with delicate classic scripts</p>
+                </div>
+            </div>
+            <!-- Crochet Sample -->
+            <div class="gallery-item">
+                <div class="image-placeholder">
+                    <span>[ Handmade Crochet Crafts ]</span>
+                </div>
+                <div class="gallery-info">
+                    <h3>Cozy Bow Keychain</h3>
+                    <p>Delicate, high-quality hand-stitched crochet yarn creations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2 class="section-title">Behind the Brush & Needle</h2>
+            <p>At <strong>The Cozy Canvas</strong>, we create premium, good quality handmade canvases and soft crochet crafts. Every single piece is structured completely by hand with detailed care and attention to design.</p>
+            <p>Whether you are looking for timeless Arabic calligraphy to illuminate your walls or aesthetic accessories to carry with you, we specialize in customizing every item perfectly according to your palette, size options, and personal aesthetic.</p>
+        </div>
+    </section>
+
+    <!-- CUSTOMIZER & ONLINE ORDER FORM -->
+    <section id="customize" class="order-section">
+        <h2 class="section-title">Design Your Masterpiece</h2>
+        <div class="order-container">
+            <form id="whatsappOrderForm">
+                <div class="form-group">
+                    <label for="clientName">Your Name</label>
+                    <input type="text" id="clientName" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="itemType">Item Category</label>
+                    <select id="itemType" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Custom Calligraphy Canvas">Custom Calligraphy Canvas</option>
+                        <option value="Abstract Islamic Painting">Abstract Islamic Painting</option>
+                        <option value="Handmade Crochet Craft">Handmade Crochet Craft/Keychain</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="customText">Custom Calligraphy Script / Words (If applicable)</label>
+                    <input type="text" id="customText" placeholder="e.g., Particular Ayah, Name, or Phrase">
+                </div>
+
+                <div class="form-group">
+                    <label for="sizeSpecs">Desired Size / Configuration</label>
+                    <select id="sizeSpecs">
+                        <option value="Standard Mini Canvas">Standard Mini Canvas</option>
+                        <option value="Medium Decorative Canvas">Medium Decorative Canvas</option>
+                        <option value="Large Statement Canvas">Large Statement Canvas</option>
+                        <option value="Crochet Keychain Unit">Crochet Keychain / Small Craft</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="customInstructions">Customization & Design Details</label>
+                    <textarea id="customInstructions" rows="4" required placeholder="Describe your preferred colors, theme accents, textures, or crochet modifications here..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Order Details via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER & CONTACT SECTION -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h2>The Cozy Canvas</h2>
+            <p class="footer-contact-info">
+                <strong>Contact Number:</strong> 03164402926 <br>
+                Feel free to connect with us for any questions regarding custom designs.
+            </p>
+            
+            <div class="social-links">
+                <!-- WhatsApp Dynamic Link Connection -->
+                <a href="https://wa.me/923164402926" target="_blank">WhatsApp Chat</a>
+                <!-- Provided Instagram profile routing link -->
+                <a href="https://www.instagram.com/mahnoorshujat?igsh=MXFoNzdsZml5anl1YQ==" target="_blank">Instagram Profile</a>
+            </div>
+            
+            <p class="copyright">&copy; 2026 The Cozy Canvas. All Rights Handcrafted & Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR DYNAMIC WHATSAPP ROUTING -->
+    <script>
+        document.getElementById('whatsappOrderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Extract values securely from the form elements
+            const name = document.getElementById('clientName').value.trim();
+            const type = document.getElementById('itemType').value;
+            const script = document.getElementById('customText').value.trim() || "None requested";
+            const size = document.getElementById('sizeSpecs').value;
+            const details = document.getElementById('customInstructions').value.trim();
+            
+            // Format a highly clean, structured text block for your order management chat
+            const message = `Hello The Cozy Canvas! I would like to place an order online.\n\n` + 
+                            `*Order Details:*\n` +
+                            `• Name: ${name}\n` +
+                            `• Item Type: ${type}\n` +
+                            `• Script Selection: ${script}\n` +
+                            `• Size/Config: ${size}\n\n` +
+                            `*Customization Details:*\n` +
+                            `${details}`;
+            
+            // URL encode the text parameter safely to avoid structural script breakage
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Build absolute path string pointing to your specified phone routing number
+            const whatsappUrl = `https://wa.me/923164402926?text=${encodedMessage}`;
+            
+            // Instantly route client context into active external system window
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
